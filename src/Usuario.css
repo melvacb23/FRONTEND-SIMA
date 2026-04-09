@@ -1,0 +1,331 @@
+/* Contenedor principal de toda la vista */
+.sima-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7f8;
+  font-family: Arial, sans-serif;
+}
+
+/* Barra lateral izquierda */
+.sima-sidebar {
+  width: 220px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e5e5;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo SIMA */
+.sima-logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #39d10a;
+  margin-bottom: 24px;
+}
+
+/* Contenedor del menú lateral */
+.sima-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Botones del menú */
+.sima-menu button {
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Botón activo del menú */
+.sima-menu button.active {
+  background-color: #39d10a;
+  color: white;
+  font-weight: bold;
+}
+
+/* Área principal del contenido */
+.sima-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra superior */
+.sima-topbar {
+  min-height: 70px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Caja que contiene el input y botones del buscador */
+.sima-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Input de búsqueda */
+.sima-search {
+  width: 280px;
+  height: 38px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Efecto cuando el input está activo */
+.sima-search:focus {
+  border-color: #39d10a;
+  box-shadow: 0 0 0 0.2rem rgba(57, 209, 10, 0.15);
+}
+
+/* Caja del usuario en la barra superior */
+.sima-userbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Círculo con letra del usuario */
+.sima-user-icon {
+  width: 36px;
+  height: 36px;
+  background-color: #f1e8ff;
+  color: #7c4dff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Contenido interno */
+.sima-content {
+  padding: 24px;
+}
+
+/* Título principal */
+.sima-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Tarjetas o paneles */
+.sima-card {
+  background-color: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+/* Títulos secundarios */
+.sima-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #222;
+}
+
+/* Grid de 2 columnas */
+.sima-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* Grid de 3 columnas */
+.sima-form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+/* Otro grid de 2 columnas */
+.sima-form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+/* Botón verde principal */
+.sima-btn-green {
+  background-color: #39d10a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  height: 42px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sima-btn-green:hover {
+  background-color: #31b808;
+}
+
+/* Botón oscuro */
+.sima-btn-dark {
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  height: 42px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Botón rojo cerrar sesión */
+.sima-btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  height: 38px;
+  padding: 0 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sima-btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+/* Botón buscar */
+.sima-btn-search {
+  background-color: #39d10a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  height: 38px;
+  padding: 0 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sima-btn-search:hover {
+  background-color: #31b808;
+}
+
+/* Botón limpiar */
+.sima-btn-clear {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  height: 38px;
+  padding: 0 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sima-btn-clear:hover {
+  background-color: #5a6268;
+}
+
+/* Encabezados de tabla */
+.sima-table th {
+  background-color: #f8f9fa;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Celdas de tabla */
+.sima-table td {
+  vertical-align: middle;
+}
+
+/* Caja de botones de acciones */
+.sima-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Caja del cambiar contraseña */
+.sima-password-box {
+  max-width: 480px;
+}
+
+/* Hace que la tabla pueda desplazarse horizontalmente si no cabe */
+.sima-card table {
+  width: 100%;
+}
+
+.sima-card {
+  overflow-x: auto;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .sima-sidebar {
+    display: none;
+  }
+
+  .sima-form-grid,
+  .sima-form-grid-2,
+  .sima-form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sima-search {
+    width: 220px;
+  }
+
+  .sima-topbar {
+    align-items: flex-start;
+    padding: 16px;
+  }
+}
+
+/* Responsive para celulares */
+@media (max-width: 576px) {
+  .sima-content {
+    padding: 16px;
+  }
+
+  .sima-search-box {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sima-search {
+    width: 100%;
+  }
+
+  .sima-userbox {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sima-btn-search,
+  .sima-btn-clear,
+  .sima-btn-danger {
+    width: 100%;
+  }
+}
