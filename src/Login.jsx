@@ -8,14 +8,17 @@ export default function Login({ onLogin }) {
   const [mensaje, setMensaje] = useState("");
   const [mostrarOlvide, setMostrarOlvide] = useState(false);
 
-  const URL_LOGIN = "http://127.0.0.1:8000/api/token/";
+  // Backend real en Express
+  const URL_LOGIN = "http://localhost:3000/api/auth/login";
 
   function iniciarSesion(e) {
     e.preventDefault();
     setMensaje("");
 
+    // OJO:
+    // Aunque el input se llame username, el backend espera email
     const data = {
-      username: username.trim(),
+      email: username.trim(),
       password: password
     };
 
@@ -33,9 +36,17 @@ export default function Login({ onLogin }) {
         });
       })
       .then((data) => {
-        localStorage.setItem("access", data.access);
-        localStorage.setItem("refresh", data.refresh);
+        // Guardamos token
+        localStorage.setItem("access", data.data.access);
+
+        // Guardamos nombre/correo del usuario
         localStorage.setItem("username", username.trim());
+        localStorage.setItem("usuario", username.trim());
+
+        // Guardamos rol si viene
+        if (data.data.user?.rol) {
+          localStorage.setItem("rol", data.data.user.rol);
+        }
 
         setMensaje("Inicio de sesión correcto");
 
@@ -46,12 +57,10 @@ export default function Login({ onLogin }) {
       .catch((error) => {
         console.log("Error login:", error);
 
-        if (error.detail) {
-          setMensaje(error.detail);
-        } else if (error.username) {
-          setMensaje(error.username[0]);
-        } else if (error.password) {
-          setMensaje(error.password[0]);
+        if (error.message) {
+          setMensaje(error.message);
+        } else if (error.error) {
+          setMensaje(error.error);
         } else {
           setMensaje("Error al iniciar sesión");
         }
@@ -87,11 +96,11 @@ export default function Login({ onLogin }) {
 
         <form onSubmit={iniciarSesion}>
           <div className="mb-3">
-            <label className="login-sima-label">USUARIO</label>
+            <label className="login-sima-label">USUARIO / CORREO</label>
             <input
               type="text"
               className="form-control login-sima-input"
-              placeholder="Ingrese su usuario"
+              placeholder="Ingrese su correo"
               value={username}
               onChange={manejarCambioUsername}
               required
