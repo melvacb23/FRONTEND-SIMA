@@ -1,4 +1,4 @@
-import "./Usuario.css";
+import "../Dashboard/Usuario.css";
 import { useState } from "react";
 
 export default function CambiarPassword() {

@@ -2,13 +2,16 @@
 import { useEffect, useState } from "react";
 
 // Importamos el componente para cambiar contraseña
-import CambiarPassword from "./CambiarPassword";
+import CambiarPassword from "../Auth/CambiarPassword";
 
 // Importamos los estilos
 import "./Usuario.css";
 
 // Recibimos la función onLogout desde App.jsx
-export default function Usuario({ onLogout }) {
+import { useNavigate } from "react-router-dom";
+
+export default function Usuario() {
+  const navigate = useNavigate();
   // Estado para guardar la lista completa de usuarios
   const [usuarios, setUsuarios] = useState([]);
 
@@ -365,9 +368,7 @@ export default function Usuario({ onLogout }) {
     localStorage.removeItem("refresh");
     localStorage.removeItem("username");
 
-    if (onLogout) {
-      onLogout();
-    }
+    navigate("/login");
   }
 
   // Devuelve el nombre del rol
@@ -386,7 +387,7 @@ export default function Usuario({ onLogout }) {
         <div className="sima-menu">
           <button>Inicio</button>
           <button className="active">Gestión de usuarios</button>
-          <button>Gestión de fichas</button>
+          <button onClick={() => navigate("/grupos")}>Gestión de fichas</button>
           <button>Configuración</button>
         </div>
       </aside>

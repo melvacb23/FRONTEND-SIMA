@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-export default function OlvidePassword({ onVolver }) {
+export default function OlvidePassword() {
   const [username, setUsername] = useState("");
   const [numeroDocumento, setNumeroDocumento] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const navigate = useNavigate();
 
   const URL_OLVIDE = "http://127.0.0.1:8000/api/olvide-password/";
 
@@ -82,7 +84,7 @@ export default function OlvidePassword({ onVolver }) {
           </div>
 
           <div className="d-flex justify-content-between align-items-center mt-4">
-            <button type="button" className="btn btn-secondary" onClick={onVolver}>
+            <button type="button" className="btn btn-secondary" onClick={() => navigate("/login")}>
               Volver
             </button>
 
