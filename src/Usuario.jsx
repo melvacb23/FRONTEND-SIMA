@@ -55,8 +55,8 @@ export default function Usuario({ onLogout }) {
   });
 
   // Endpoints del backend
-  const URL_USUARIOS = "http://127.0.0.1:8000/api/usuarios/";
-  const URL_ROLES = "http://127.0.0.1:8000/api/roles/";
+  const URL_USUARIOS = "http://127.0.0.1:3000/api/usuarios/";
+  const URL_ROLES = "http://127.0.0.1:3000/api/roles/";
 
   // Al cargar el componente, consultamos usuarios y roles
   useEffect(() => {

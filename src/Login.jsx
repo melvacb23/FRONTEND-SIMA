@@ -8,14 +8,13 @@ export default function Login({ onLogin }) {
   const [mensaje, setMensaje] = useState("");
   const [mostrarOlvide, setMostrarOlvide] = useState(false);
 
-  const URL_LOGIN = "http://127.0.0.1:8000/api/token/";
+  const URL_LOGIN = "/api/auth/login";
 
   function iniciarSesion(e) {
-    e.preventDefault();
     setMensaje("");
 
     const data = {
-      username: username.trim(),
+      numero_documento: username.trim(),
       password: password
     };
 
@@ -87,11 +86,11 @@ export default function Login({ onLogin }) {
 
         <form onSubmit={iniciarSesion}>
           <div className="mb-3">
-            <label className="login-sima-label">USUARIO</label>
+            <label className="login-sima-label">NÚMERO DE DOCUMENTO</label>
             <input
               type="text"
               className="form-control login-sima-input"
-              placeholder="Ingrese su usuario"
+              placeholder="Ingrese su número de documento"
               value={username}
               onChange={manejarCambioUsername}
               required

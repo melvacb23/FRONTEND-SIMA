@@ -13,7 +13,7 @@
 .login-sima-logo {
   font-size: 56px;
   font-weight: bold;
-  color: #39d10a;
+  color: #39A900;
   margin-bottom: 20px;
   z-index: 2;
 }
@@ -52,7 +52,7 @@
 }
 
 .login-sima-input:focus {
-  border-color: #39d10a;
+  border-color: #39A900;
   box-shadow: 0 0 0 0.2rem rgba(57, 209, 10, 0.15);
 }
 
@@ -74,7 +74,7 @@
 .login-sima-btn {
   width: 160px;
   height: 42px;
-  background: #39d10a;
+  background: #39A900;
   color: white;
   border: none;
   border-radius: 6px;
@@ -83,7 +83,7 @@
 }
 
 .login-sima-btn:hover {
-  background: #31b808;
+  background: #39A900;
 }
 
 .login-sima-wave {
@@ -91,7 +91,7 @@
   bottom: -120px;
   width: 140%;
   height: 260px;
-  background: #39d10a;
+  background: #39A900;
   border-radius: 50% 50% 0 0;
   z-index: 1;
 }
@@ -99,7 +99,7 @@
 .login-sima-link-btn {
   background: none;
   border: none;
-  color: #9acb88;
+  color: #39A900;
   cursor: pointer;
   font-size: 12px;
   padding: 0;
@@ -133,7 +133,7 @@
 .login-sima-btn {
   width: 160px;
   height: 42px;
-  background: #39d10a;
+  background: #39A900;
   color: white;
   border: none;
   border-radius: 6px;

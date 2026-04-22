@@ -6,7 +6,7 @@ export default function OlvidePassword({ onVolver }) {
   const [numeroDocumento, setNumeroDocumento] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  const URL_OLVIDE = "http://127.0.0.1:8000/api/olvide-password/";
+  const URL_OLVIDE = "http://127.0.0.1:3000/api/olvide-password/";
 
   function restablecerPassword(e) {
     e.preventDefault();
