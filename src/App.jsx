@@ -1,57 +1,56 @@
-// Importamos useEffect y useState para manejar el estado de la sesión
+// Importamos useEffect y useState para manejar la sesión
 import { useEffect, useState } from "react";
 
-// Importamos el componente Login
+// Importamos BrowserRouter para que funcionen useNavigate y la navegación
+import { BrowserRouter } from "react-router-dom";
+
+// Importamos login
 import Login from "./Login";
 
-// Importamos el componente Usuario
-import Usuario from "./Usuario";
+// Importamos dashboard
+import PanelCoordinador from "./pages/PanelCoordinador";
 
 function App() {
-  // Estado para guardar el token actual de sesión
+  // Estado para guardar el token actual
   const [token, setToken] = useState(null);
 
-  // useEffect se ejecuta una vez al cargar la aplicación
+  // Al cargar la app, revisamos si ya existe un token guardado
   useEffect(() => {
-    // Como quieres que primero salga siempre el login,
-    // limpiamos cualquier sesión vieja guardada
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("username");
-
-    // Dejamos el token en null para mostrar login
-    setToken(null);
-  }, []);
-
-  // Esta función se ejecuta cuando el login es correcto
-  function manejarLogin() {
-    // Obtenemos el token recién guardado en localStorage
     const tokenGuardado = localStorage.getItem("access");
 
-    // Lo guardamos en el estado para cambiar a la vista Usuario
+    if (tokenGuardado) {
+      setToken(tokenGuardado);
+    }
+  }, []);
+
+  // Se ejecuta cuando el login es correcto
+  function manejarLogin() {
+    const tokenGuardado = localStorage.getItem("access");
     setToken(tokenGuardado);
   }
 
-  // Esta función se ejecuta cuando el usuario cierra sesión
+  // Se ejecuta al cerrar sesión
   function cerrarSesion() {
-    // Eliminamos los datos de sesión
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("username");
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("rol");
+    localStorage.removeItem("nombre");
+    sessionStorage.clear();
 
-    // Volvemos a null para mostrar login nuevamente
     setToken(null);
   }
 
   return (
-    <div>
-      {/* Si hay token mostramos Usuario, si no hay token mostramos Login */}
+    <BrowserRouter>
+      {/* Si hay token, mostramos dashboard; si no, login */}
       {token ? (
-        <Usuario onLogout={cerrarSesion} />
+        <PanelCoordinador onLogout={cerrarSesion} />
       ) : (
         <Login onLogin={manejarLogin} />
       )}
-    </div>
+    </BrowserRouter>
   );
 }
 
