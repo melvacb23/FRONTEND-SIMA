@@ -4,8 +4,13 @@ import { useEffect, useState } from "react";
 // Importamos el componente para cambiar contraseña
 import CambiarPassword from "./CambiarPassword";
 
+// Importamos componentes del coordinador
+import SidebarCoordinador from "./components/coordinador/SidebarCoordinador";
+import TopbarCoordinador from "./components/coordinador/TopbarCoordinador";
+
 // Importamos los estilos
 import "./Usuario.css";
+import "./styles/coordinador.css";
 
 // Recibimos la función onLogout desde App.jsx
 export default function Usuario({ onLogout }) {
@@ -55,8 +60,8 @@ export default function Usuario({ onLogout }) {
   });
 
   // Endpoints del backend
-  const URL_USUARIOS = "http://127.0.0.1:3000/api/usuarios/";
-  const URL_ROLES = "http://127.0.0.1:3000/api/roles/";
+  const URL_USUARIOS = "/api/usuarios/";
+  const URL_ROLES = "/api/roles/";
 
   // Al cargar el componente, consultamos usuarios y roles
   useEffect(() => {
@@ -378,21 +383,11 @@ export default function Usuario({ onLogout }) {
   }
 
   return (
-    <div className="sima-layout">
-      {/* Barra lateral */}
-      <aside className="sima-sidebar">
-        <div className="sima-logo">SIMA</div>
-
-        <div className="sima-menu">
-          <button>Inicio</button>
-          <button className="active">Gestión de usuarios</button>
-          <button>Gestión de fichas</button>
-          <button>Configuración</button>
-        </div>
-      </aside>
-
-      {/* Contenido principal */}
-      <main className="sima-main">
+    <div className="coordinador-layout">
+      <SidebarCoordinador />
+      <div className="coordinador-content">
+        <TopbarCoordinador onLogout={onLogout} />
+        <main className="coordinador-main">
         {/* Barra superior */}
         <div className="sima-topbar">
           <div className="sima-search-box">
@@ -697,7 +692,8 @@ export default function Usuario({ onLogout }) {
             <CambiarPassword />
           </div>
         </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }

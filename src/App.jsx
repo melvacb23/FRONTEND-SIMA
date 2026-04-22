@@ -2,13 +2,16 @@
 import { useEffect, useState } from "react";
 
 // Importamos BrowserRouter para que funcionen useNavigate y la navegación
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Importamos login
 import Login from "./Login";
 
 // Importamos dashboard
 import PanelCoordinador from "./pages/PanelCoordinador";
+
+// Importamos gestión de usuarios
+import Usuario from "./Usuario";
 
 function App() {
   // Estado para guardar el token actual
@@ -44,9 +47,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* Si hay token, mostramos dashboard; si no, login */}
+      {/* Si hay token, mostramos las rutas del dashboard; si no, login */}
       {token ? (
-        <PanelCoordinador onLogout={cerrarSesion} />
+        <Routes>
+          <Route path="/panel" element={<PanelCoordinador onLogout={cerrarSesion} />} />
+          <Route path="/usuarios" element={<Usuario onLogout={cerrarSesion} />} />
+          <Route path="/" element={<Navigate to="/panel" replace />} />
+          {/* Agregar más rutas según sea necesario */}
+        </Routes>
       ) : (
         <Login onLogin={manejarLogin} />
       )}
