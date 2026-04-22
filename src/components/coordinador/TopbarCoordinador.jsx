@@ -142,9 +142,9 @@ function TopbarCoordinador({ terminoBusqueda, setTerminoBusqueda }) {
         </div>
 
         {/* Botón de cerrar sesión */}
-        <button className="coordinador-btn-salir" onClick={cerrarSesion}>
+        {/* <button className="coordinador-btn-salir" onClick={cerrarSesion}>
           Cerrar sesión
-        </button>
+        </button> */}
 
         {/* Círculo con la inicial del usuario */}
         <div className="coordinador-usuario-icono">{inicialUsuario}</div>

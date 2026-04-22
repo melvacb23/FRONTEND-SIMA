@@ -8,24 +8,14 @@ export default function Login({ onLogin }) {
   const [mensaje, setMensaje] = useState("");
   const [mostrarOlvide, setMostrarOlvide] = useState(false);
 
-<<<<<<< HEAD
   const URL_LOGIN = "/api/auth/login";
-=======
-  // Backend real en Express
-  const URL_LOGIN = "http://localhost:3000/api/auth/login";
->>>>>>> feature/melva-dashboard
 
   function iniciarSesion(e) {
+    e.preventDefault();
     setMensaje("");
 
-    // OJO:
-    // Aunque el input se llame username, el backend espera email
     const data = {
-<<<<<<< HEAD
       numero_documento: username.trim(),
-=======
-      email: username.trim(),
->>>>>>> feature/melva-dashboard
       password: password
     };
 
@@ -103,20 +93,12 @@ export default function Login({ onLogin }) {
 
         <form onSubmit={iniciarSesion}>
           <div className="mb-3">
-<<<<<<< HEAD
+
             <label className="login-sima-label">NÚMERO DE DOCUMENTO</label>
             <input
               type="text"
               className="form-control login-sima-input"
-              placeholder="Ingrese su número de documento"
-=======
-            <label className="login-sima-label">USUARIO / CORREO</label>
-            <input
-              type="text"
-              className="form-control login-sima-input"
-              placeholder="Ingrese su correo"
->>>>>>> feature/melva-dashboard
-              value={username}
+              placeholder="Ingrese su número de documento" value={username}
               onChange={manejarCambioUsername}
               required
             />
