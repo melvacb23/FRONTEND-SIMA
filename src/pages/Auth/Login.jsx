@@ -1,21 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import OlvidePassword from "./OlvidePassword";
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
-  const [mostrarOlvide, setMostrarOlvide] = useState(false);
+  const navigate = useNavigate();
 
-  const URL_LOGIN = "http://127.0.0.1:8000/api/token/";
+  const URL_LOGIN = "http://127.0.0.1:8000/api/auth/login";
 
   function iniciarSesion(e) {
     e.preventDefault();
     setMensaje("");
 
     const data = {
-      username: username.trim(),
+      numero_documento: username.trim(),
       password: password
     };
 
@@ -32,16 +32,14 @@ export default function Login({ onLogin }) {
           return data;
         });
       })
-      .then((data) => {
-        localStorage.setItem("access", data.access);
-        localStorage.setItem("refresh", data.refresh);
+      .then((resData) => {
+        // En el nuevo backend, el token viene en resData.data.token
+        const token = resData.data ? resData.data.token : resData.token;
+        localStorage.setItem("access", token);
         localStorage.setItem("username", username.trim());
 
         setMensaje("Inicio de sesión correcto");
-
-        if (onLogin) {
-          onLogin();
-        }
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.log("Error login:", error);
@@ -66,10 +64,6 @@ export default function Login({ onLogin }) {
   function manejarCambioPassword(e) {
     setPassword(e.target.value);
     if (mensaje) setMensaje("");
-  }
-
-  if (mostrarOlvide) {
-    return <OlvidePassword onVolver={() => setMostrarOlvide(false)} />;
   }
 
   return (
@@ -118,7 +112,7 @@ export default function Login({ onLogin }) {
             <button
               type="button"
               className="login-sima-link-btn"
-              onClick={() => setMostrarOlvide(true)}
+              onClick={() => navigate("/olvide-password")}
             >
               ¿Olvidaste tu contraseña?
             </button>

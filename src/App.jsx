@@ -1,57 +1,71 @@
-// Importamos useEffect y useState para manejar el estado de la sesión
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-// Importamos el componente Login
-import Login from "./Login";
+// Importamos las vistas (Páginas)
+import Login from "./pages/Auth/Login";
+import OlvidePassword from "./pages/Auth/OlvidePassword";
+import Usuario from "./pages/Dashboard/Usuario";
+import GruposFormativos from "./pages/Grupos/GruposFormativos";
 
-// Importamos el componente Usuario
-import Usuario from "./Usuario";
+// Componente para proteger las rutas privadas
+function RutaPrivada({ children }) {
+  const token = localStorage.getItem("access");
+  return token ? children : <Navigate to="/login" />;
+}
+
+// Componente para redirigir si ya está logueado (Rutas públicas)
+function RutaPublica({ children }) {
+  const token = localStorage.getItem("access");
+  return !token ? children : <Navigate to="/dashboard" />;
+}
 
 function App() {
-  // Estado para guardar el token actual de sesión
-  const [token, setToken] = useState(null);
-
-  // useEffect se ejecuta una vez al cargar la aplicación
-  useEffect(() => {
-    // Como quieres que primero salga siempre el login,
-    // limpiamos cualquier sesión vieja guardada
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("username");
-
-    // Dejamos el token en null para mostrar login
-    setToken(null);
-  }, []);
-
-  // Esta función se ejecuta cuando el login es correcto
-  function manejarLogin() {
-    // Obtenemos el token recién guardado en localStorage
-    const tokenGuardado = localStorage.getItem("access");
-
-    // Lo guardamos en el estado para cambiar a la vista Usuario
-    setToken(tokenGuardado);
-  }
-
-  // Esta función se ejecuta cuando el usuario cierra sesión
-  function cerrarSesion() {
-    // Eliminamos los datos de sesión
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("username");
-
-    // Volvemos a null para mostrar login nuevamente
-    setToken(null);
-  }
-
   return (
-    <div>
-      {/* Si hay token mostramos Usuario, si no hay token mostramos Login */}
-      {token ? (
-        <Usuario onLogout={cerrarSesion} />
-      ) : (
-        <Login onLogin={manejarLogin} />
-      )}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route 
+          path="/" 
+          element={<Navigate to="/login" />} 
+        />
+        
+        <Route 
+          path="/login" 
+          element={
+            <RutaPublica>
+              <Login />
+            </RutaPublica>
+          } 
+        />
+        
+        <Route 
+          path="/olvide-password" 
+          element={
+            <RutaPublica>
+              <OlvidePassword />
+            </RutaPublica>
+          } 
+        />
+        
+        <Route 
+          path="/dashboard" 
+          element={
+            <RutaPrivada>
+              <Usuario />
+            </RutaPrivada>
+          } 
+        />
+        
+        <Route 
+          path="/grupos" 
+          element={
+            <RutaPrivada>
+              <GruposFormativos />
+            </RutaPrivada>
+          } 
+        />
+        
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
