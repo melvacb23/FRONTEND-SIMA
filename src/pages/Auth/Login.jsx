@@ -33,13 +33,25 @@ export default function Login() {
         });
       })
       .then((resData) => {
-        // En el nuevo backend, el token viene en resData.data.token
+        // El token puede venir en resData.data.token o resData.token
         const token = resData.data ? resData.data.token : resData.token;
+
+        // El rol puede venir en resData.data.rol o resData.rol
+        const rol = resData.data?.rol || resData.rol || "";
+
+        // Guardamos token, usuario y rol en localStorage
         localStorage.setItem("access", token);
         localStorage.setItem("username", username.trim());
+        localStorage.setItem("rol", rol);
 
         setMensaje("Inicio de sesión correcto");
-        navigate("/dashboard");
+
+        // Redirigimos según el rol del usuario
+        if (rol === "coordinador") {
+          navigate("/coordinador");
+        } else {
+          navigate("/dashboard");
+        }
       })
       .catch((error) => {
         console.log("Error login:", error);

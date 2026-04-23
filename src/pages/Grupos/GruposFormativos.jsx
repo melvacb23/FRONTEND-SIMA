@@ -233,6 +233,7 @@ export default function GruposFormativos() {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("username");
+    localStorage.removeItem("rol");
     navigate("/login");
   }
 
@@ -459,7 +460,13 @@ export default function GruposFormativos() {
                     grupos.map((g, idx) => (
                       <tr key={idx}>
                         <td className="sima-td-highlight">{g.numero_ficha || g.numero_grupo || g.codigo || "2847621"}</td>
-                        <td>{g.programa_formacion?.nombre_programa || g.programa || "Análisis y Desarrollo de Software"}</td>
+                        <td 
+                          className="sima-td-highlight" 
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("/coordinador")}
+                        >
+                          {g.programa_formacion?.nombre_programa || g.programa || "Análisis y Desarrollo de Software"}
+                        </td>
                         <td>{g.jornada || "Mañana"}</td>
                         <td className="text-center">{g.aprendices !== undefined ? g.aprendices : 24}</td>
                         <td className="text-center">{g.trimestres || 6}</td>
@@ -479,7 +486,7 @@ export default function GruposFormativos() {
                     <>
                       <tr>
                         <td className="sima-td-highlight">2847621</td>
-                        <td>Análisis y Desarrollo</td>
+                        <td className="sima-td-highlight" style={{ cursor: "pointer" }} onClick={() => navigate("/coordinador")}>Análisis y Desarrollo</td>
                         <td>Mañana</td>
                         <td className="text-center">24</td>
                         <td className="text-center">6</td>
@@ -487,7 +494,7 @@ export default function GruposFormativos() {
                       </tr>
                       <tr>
                         <td className="sima-td-highlight">2068574</td>
-                        <td>Redes y Datos</td>
+                        <td className="sima-td-highlight" style={{ cursor: "pointer" }} onClick={() => navigate("/coordinador")}>Redes y Datos</td>
                         <td>Tarde</td>
                         <td className="text-center">30</td>
                         <td className="text-center">4</td>
@@ -495,7 +502,7 @@ export default function GruposFormativos() {
                       </tr>
                       <tr>
                         <td className="sima-td-highlight">3064975</td>
-                        <td>Contabilidad</td>
+                        <td className="sima-td-highlight" style={{ cursor: "pointer" }} onClick={() => navigate("/coordinador")}>Contabilidad</td>
                         <td>Mañana</td>
                         <td className="text-center">19</td>
                         <td className="text-center">3</td>

@@ -367,6 +367,7 @@ export default function Usuario() {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("username");
+    localStorage.removeItem("rol");
 
     navigate("/login");
   }
